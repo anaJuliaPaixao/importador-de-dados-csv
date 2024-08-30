@@ -2,9 +2,48 @@
 
 Este projeto é um serviço de importação de catálogos que permite a inserção e manipulação de dados de catálogos. Ele utiliza Entity Framework Core para acesso ao banco de dados e pode ser executado em um contêiner Docker.
 
+## ⚙️ Mecanismos Arquiteturiais
+
+|Análise            |	Design                                      |	Implementação    |
+|-------------------|---------------------------------------------|------------------|
+|Persistência       |	ORM	                                        | Entity Framework |
+|Persistência       |	Banco de dados relacional                   | SqlServer        |
+|Back-end	          |  Arquitetura em camadas                     |	.Net8            |
+|Documentação de API|Solução para documentação das APIs da solução|	Swagger          |
+|Teste de Software  | 	Teste unitários	                          | xUnit            |
+
+## ⚙️ Estrutura Backend
+
+Desenvolvido em DDD (Domain Driven Design) é uma modelagem de software na qual o objetivo é facilitar a implementação de regras e processos, onde visa a divisão de responsabilidades por camadas e é independente da tecnologia utilizada. Ou seja, o DDD é uma filosofia voltado para o domínio do negócio.
+
+* Aplicação: Porta de entrada, responsável por receber as requisições e direcioná-las para camadas mais internas.
+* Domínio: Responsável pelo Core do projeto, contendo classes e interfaces que poderão ser utilizadas para compor as regras de negócio.
+* Serviço: Um dos responsáveis pelo Core do projeto, onde é utilizado o que há na camada Domínio para realizar, de fato, as regras de negócio.
+* Repositorio: Camada para comunicação externa, ou seja, pela comunicação com banco de dados, realizando operações.
+
+## ⚙️ Estrutura do projeto
+* Aplicação – Projeto responsável pela organização e exposição das rotas da API.
+* Servico – Projeto que contém toda a regra de negócio da API.
+* Repositorio – Projeto responsável por centralizar a comunicação com o banco de dados.
+* Dominio– Projeto responsável por centralizar todo o Core do projeto.
+* TesteUnitario – Projeto com os testes unitários da API.
+
+
 ## Pré-requisitos
 
-- [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [.NET 8 ](https://dotnet.microsoft.com/download/dotnet/6.0)
+- [Docker](https://www.docker.com/get-started)
+- [Entity Framework Core Tools](https://docs.microsoft.com/ef/core/cli/dotnet)
+- 
+ ## Observaçôes importantes:
+ - O Arquivo importado deve estar no formato CSV e separado por virgula]
+ - O Catalago sera criado na hora da importacao com o mesmo nome do arquivo
+ - Para inserir novos dados do catalago existente usar a rota `POST /InserirNovoCatalago`
+ - Para inserir um subcatalago passando apenas uma coluna como no arquivo exemplo meusPokemons utilizar a rota `POST /InserirDadosCatalagosExistentes`
+ - Para obter a coluna de um catalago para auxiliar no filtro existe a rota `GET /ObterColunaPorCatalago`
+ - Para executar os testes unitarios, navegar ate a psta ImportadorServico.Testes e executar o comando  `dotnet test`
+
+- [.NET 8 ](https://dotnet.microsoft.com/download/dotnet/6.0)
 - [Docker](https://www.docker.com/get-started)
 - [Entity Framework Core Tools](https://docs.microsoft.com/ef/core/cli/dotnet)
 
@@ -13,22 +52,18 @@ Este projeto é um serviço de importação de catálogos que permite a inserç�
 ### 1. Clonar o Repositório
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
+git clone https://github.com/anaJuliaPaixao/importador-de-dados-csv.git
+
 ```
-
-### 2. Configurar o Docker
-
-#### 2.1. Construir a Imagem Docker
-
+#### 2. Executar o Contêiner Docker
+- vá para a pasta raiz do projeto
+- execute:
 ```bash
-docker build -t importador-catalogos .
+cd Importador.Aplicacao
 ```
-
-#### 2.2. Executar o Contêiner Docker
-
+- Depois:
 ```bash
-docker run -d -p 5000:80 --name importador-catalogos importador-catalogos
+sudo docker compose up -d
 ```
 
 ### 3. Instalar Entity Framework Core Tools
@@ -39,27 +74,16 @@ dotnet tool install --global dotnet-ef
 
 ### 4. Atualizar o Banco de Dados
 
-#### 4.1. Adicionar a String de Conexão
+#### 4.1. Ajustar caso preciso a String de Conexão
 
-Adicione a string de conexão ao arquivo `appsettings.json`:
-
-```json
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Database=ImportadorCatalogos;User Id=seu-usuario;Password=sua
-
--s
-
-enha;"
-  }
-}
-```
+A string de conexao esta no arquivo `appsettings.json`:
 
 #### 4.2. Executar as Migrações
 
 ```bash
-dotnet ef database update
+dotnet ef database update  --project Importador.Repositorio.csproj --startup-project ../Importador.Aplicacao
 ```
+- garanta que o comando execute dentro da pasta Importador.Repositorio
 
 ## Endpoints
 
@@ -157,18 +181,3 @@ Content-Type: application/json
 }
 ```
 
-## Contribuição
-
-1. Faça um fork do projeto.
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`).
-3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`).
-4. Faça um push para a branch (`git push origin feature/nova-feature`).
-5. Crie um novo Pull Request.
-
-## Licença
-
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
-
----
-
-Com este guia, você deve ser capaz de configurar e executar o projeto de importação de catálogos, bem como entender e utilizar os endpoints disponíveis.
