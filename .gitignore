@@ -41,12 +41,7 @@ project.fragment.lock.json
 artifacts/
 .nuget/
 
-# Entity Framework Core migrations
-Migrations/
 
-# DotNet local DBs
-*.mdf
-*.ldf
 
 # Web project directories
 wwwroot/
