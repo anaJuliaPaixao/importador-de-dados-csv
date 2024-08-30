@@ -1,0 +1,130 @@
+# Compiled binary and symbol files
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.nuget.packages
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.log
+*.vs/
+.vscode/
+.idea/
+.DS_Store
+*.class
+*.pyc
+*.cache
+*.moc
+*.o
+*.ttf
+*.tmp
+*.msi
+*.lock.json
+*.dbmdl
+*.jfm
+*.ide.*
+_ReSharper.Caches/
+
+# NuGet packages
+packages/
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+.nuget/
+
+# Entity Framework Core migrations
+Migrations/
+
+# DotNet local DBs
+*.mdf
+*.ldf
+
+# Web project directories
+wwwroot/
+node_modules/
+
+# Publish output
+publish/
+publish_profiles/
+
+# IIS
+*.vspscc
+*.vssscc
+.history/
+ 
+# Rider projects
+.idea/
+.idea_modules/
+.idea_modules/
+.idea_modules.iml/
+.idea/.idea_modules/
+.idea/.idea_modules/.idea_modules.iml
+.idea_modules/.idea_modules.iml
+.idea_modules/.idea_modules.iml/
+.idea_modules/.idea_modules/
+.idea_modules/.idea_modules/.idea_modules.iml
+.idea_modules/.idea_modules.iml
+.idea_modules/.idea_modules.iml/
+
+# JetBrains Rider
+.idea/
+
+# Libman
+libman.json
+wwwroot/lib/
+
+# JetBrains Rider
+.idea/
+.idea_modules/
+.idea_modules.iml/
+.idea/.idea_modules/
+.idea/.idea_modules/.idea_modules.iml
+.idea_modules/.idea_modules.iml
+.idea_modules/.idea_modules.iml/
+.idea_modules/.idea_modules/
+.idea_modules/.idea_modules/.idea_modules.iml
+.idea_modules/.idea_modules.iml
+.idea_modules/.idea_modules.iml/
+
+# Cake
+tools/
+addins/
+modules/
+.cake/
+.cake/*
+.cake/**/*.*
+.cake/bak/*
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Resharper
+_ReSharper.Caches/
+
+# Auto-generated files (from the WinForms designer, for example)
+*.designer.cs
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Temporary files
+tmp/
+
